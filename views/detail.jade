@@ -1,0 +1,46 @@
+extends master
+
+block content
+  .container(ng-controller="viewDetailController")
+    div.col-md-5
+     
+        img.col-md-12(src = '{{viewComic.image.super_url}}',class="image")
+            
+            
+    
+    div.col-md-7
+        p
+         b.para-block Name :
+            pre.pre-block {{viewComic.name}}
+        p 
+         b.para-block(ng-show="viewComic.deck.length>0") Description : 
+            pre.pre-block {{viewComic.deck}}
+        p
+            b.para-block Origin: 
+                pre.pre-block {{viewComic.origin.name}}
+        p
+            b.para-block Publisher: 
+                pre.pre-block {{viewComic.publisher.name}} 
+        p
+            button.btn.btn-default(style="width: 100%", ng-click="togglePowers()") {{powerBtnText || '+ show Powers'}} 
+            div(ng-show="displayPowers")
+                li.col-md-4(ng-repeat="p in viewComic.powers") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%",ng-click="toggleFriends()") {{friendBtnText || '+ show Friends'}} 
+            div(ng-show="displayFriends")
+                li.col-md-4(ng-repeat="p in viewComic.character_friends")
+                    a(href="viewComic/4005-{{p.id}}") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%", ng-show="viewComic.character_enemies.length>0" ng-click="toggleEnemies()") {{enemieBtnText || '+ show Enemies'}} 
+            div(ng-show="displayEnemies")
+                ul
+                 li.col-md-4(ng-repeat="p in viewComic.character_enemies")
+                    //a.btn.btn-sm.btn-danger(ng-show="viewComic.character_enemies.length>0" href="versusComic/4005-{{viewComic.id}}/versus/4005-{{p.id}}" style="color: #FFF; width=20%") 
+                    a(href="versusComic/4005-{{viewComic.id}}/versus/4005-{{p.id}}")
+                     img(src="https://sk1wbw.files.wordpress.com/2011/03/versus.png",ng-show="viewComic.character_enemies.length>0" width="40" height="40")
+                    a(href="viewComic/4005-{{p.id}}") {{p.name}}
+   
+
+     

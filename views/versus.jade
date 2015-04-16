@@ -1,0 +1,91 @@
+extends master
+
+block content
+  .container(ng-controller="comicVersusController")
+
+    .row
+      .col-md-3 
+        p
+         b.para-block Name :
+            pre.pre-block {{characterHero.name}}
+        p 
+         b.para-block Description : 
+            pre.pre-block {{characterHero.deck}}
+        p
+            b.para-block Origin: 
+                pre.pre-block {{characterHero.origin.name}}
+        p
+            b.para-block Publisher: 
+                pre.pre-block {{characterHero.publisher.name}}
+
+        a.button-block.btn.btn-danger(style="width: 50%;margin-top: 10px; margin-top: 10px;margin-bottom: 10px", href="viewComic/4005-{{characterHero.id}}") DETAILS
+
+        p
+            button.btn.btn-default(style="width: 100%", ng-click="toggleTeams()") {{teamBtnText || '+ show Teams'}} Total-Teams({{characterHero.teams.length}}) 
+            div(ng-show="displayTeams")
+                li.col-md-12(ng-repeat="p in characterHero.teams | limitTo: 3") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%", ng-click="togglePowers()") {{powerBtnText || '+ show Powers'}} Total-Powers({{characterHero.powers.length}}) 
+            div(ng-show="displayPowers")
+                li.col-md-12(ng-repeat="p in characterHero.powers | limitTo: 5") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%",ng-click="toggleFriends()") {{friendBtnText || '+ show Friends'}} Total-Friends({{characterHero.character_friends.length}})
+            div(ng-show="displayFriends")
+                li.col-md-12(ng-repeat="p in characterHero.character_friends | limitTo: 10")
+                    a(href="viewComic/4005-{{p.id}}") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%", ng-show="characterHero.character_enemies.length>0",ng-click="toggleEnemies()") {{enemieBtnText || '+ show Enemies'}} Total-Enemies({{characterHero.character_enemies.length}}) 
+            div(ng-show="displayEnemies")
+                ul
+                 li.col-md-12(ng-repeat="p in characterHero.character_enemies | limitTo: 10")                
+                    a(href="viewComic/4005-{{p.id}}") {{p.name}}
+
+
+      
+      img.col-md-2(src = '{{characterHero.image.medium_url}}',class="image")
+
+      .col-md-2
+
+      img.col-md-2(src = '{{characterVillain.image.medium_url}}',class="image")
+
+      .col-md-3
+        p
+         b.para-block Name :
+            pre.pre-block {{characterVillain.name}}
+        p 
+         b.para-block Description : 
+            pre.pre-block {{characterVillain.deck}}
+        p
+            b.para-block Origin: 
+                pre.pre-block {{characterVillain.origin.name}}
+        p
+            b.para-block Publisher: 
+                pre.pre-block {{characterVillain.publisher.name}} 
+
+        a.button-block.btn.btn-danger(style="width: 50%;margin-top: 10px; margin-top: 10px;margin-bottom: 10px", href="viewComic/4005-{{characterVillain.id}}") DETAILS
+
+        p
+            button.btn.btn-default(style="width: 100%", ng-click="toggleTeams()") {{teamBtnText || '+ show Teams'}} Total-Teams({{characterVillain.teams.length}}) 
+            div(ng-show="displayTeams")
+                li.col-md-12(ng-repeat="p in characterVillain.teams | limitTo: 3") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%", ng-click="togglePowers()") {{powerBtnText || '+ show Powers'}} Total-Powers({{characterVillain.powers.length}}) 
+            div(ng-show="displayPowers")
+                li.col-md-12(ng-repeat="p in characterVillain.powers | limitTo: 5") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%",ng-click="toggleFriends()") {{friendBtnText || '+ show Friends'}} Total-Friends({{characterVillain.character_friends.length}})
+            div(ng-show="displayFriends")
+                li.col-md-12(ng-repeat="p in characterVillain.character_friends | limitTo: 10")
+                    a(href="viewComic/4005-{{p.id}}") {{p.name}}
+
+        p
+            button.btn.btn-default(style="width: 100%", ng-show="characterVillain.character_enemies.length>0",ng-click="toggleEnemies()") {{enemieBtnText || '+ show Enemies'}} Total-Enemies({{characterVillain.character_enemies.length}}) 
+            div(ng-show="displayEnemies")
+                ul
+                 li.col-md-12(ng-repeat="p in characterVillain.character_enemies | limitTo: 10")                
+                    a(href="viewComic/4005-{{p.id}}") {{p.name}}

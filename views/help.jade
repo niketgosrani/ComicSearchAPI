@@ -1,0 +1,22 @@
+extends master
+
+block content
+  .container
+    .row(ng-controller="ComicHelpController")
+      h3 Help
+      span **using class demo locally
+      br
+      h4 1.
+        | Visit 
+        a(href="http://www.comicvine.com/api") Comic Vine api 
+        | to obtain a developer api key  
+      h4 2.
+        | Use the api key in the config.json
+
+        pre 
+          | {
+          |   "api": {
+          |     "base": "http://www.comicvine.com/api",
+          |     "key": "Enter your API key xxxx here"
+          |   }
+          | }

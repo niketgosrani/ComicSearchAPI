@@ -1,0 +1,45 @@
+extends master
+
+block content
+  .container
+    .jumbtron.text-center
+      link(rel='stylesheet', href ='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+  
+  title Comic Vine API
+  body
+    br
+    br
+    br
+   
+  
+    .container(ng-controller="comicController")
+      .row
+        .col-md-12
+          .herocontent(align="center", style="background:url(/js/img/rsz_1welcome.png) no-repeat center center; width:100%; height:208px;")
+            form.form-horizontal(style="background:none;border:none;padding-top:100px;")
+              input.pull-left.form-control(type="text", style="margin:50px 0 0 485px;background:#FFF;width:200px;" ng-model="title")
+              input.pull-left.btn.btn-default(type="submit", ng-click="searchComics()", style="margin:50px 0 0 20px")     
+
+        p.text-center(ng-show="comic.length == 0")
+          b.text-center * No Comic Character found
+          br
+          br
+          br
+        
+        div.col-md-2.more-results-block(ng-show="comic.alternatives.length > 0", style="margin-right:10px;")
+          p
+            b.span *-*-* Related Searches *-*-*
+            hr
+            div(ng-repeat="alt in comic.alternatives")
+            
+              img(src = '{{alt.image.icon_url}}')
+              p 
+                h5
+                  a(href="#",ng-click="changeCharacter(alt)") {{alt.name}}
+        .col-md-8.colorbg.comic-block(ng-show="comic.main != null", style="margin-top:20px")
+         .col-md-12
+              h3(style="margin-top: 3px !important") {{comic.main.name}}
+              p {{comic.main.deck}} 
+              p {{gender}}
+              img.img-block(src = '{{comicImg}}')
+              a.btn.btn-success(style="width: 50%;margin-top: 10px; margin-top: 10px;margin-bottom: 10px", href="viewComic/4005-{{comic.main.id}}") DETAILS

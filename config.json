@@ -1,0 +1,6 @@
+{
+  "api": {
+  	"baseurl":"http://www.comicvine.com/api",
+    "key":"68162166788d6f3ecf689fc4281a5b937985bf3f"
+  }
+}
